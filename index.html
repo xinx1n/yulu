@@ -1,1 +1,90 @@
-<h1>占个坑</h1>
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>蓝精灵</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		body{
+			background: #ddd;
+		}
+		.container>div{
+			background: #fff;
+			max-width: 500px;
+			padding:10px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.container>.preview{
+			min-height: 164px;
+			letter-spacing:.1rem;
+			line-height: 1.8rem;
+		}
+		.container>.input{
+			text-align: center;
+			line-height: 1.5rem;
+			vertical-align: middle;
+		}
+		.input>input[type="text"]{
+			width: 90%;
+			font-size: 1rem;
+			line-height: 1.5rem;
+			margin: 3px 0;
+		}
+	</style>
+</head>
+
+<body>
+<div id="app" class="container">
+
+	<div class="preview">
+		在那山的这边海的那边， 有一群{{pr.message1}}， 他们{{pr.message2}}， 他们{{pr.message3}}， 他们{{pr.message4}}， {{pr.message5}} 哦，{{pr.message6}}的{{pr.message1}}， 哦，{{pr.message6}}的{{pr.message1}}， 他们{{pr.message7}}。
+	 </div>
+	 <br>
+	 <div class="input">
+	 	<input type="text" v-model="pr.message1"><br>
+	 	<input type="text" v-model="pr.message2"><br>
+	 	<input type="text" v-model="pr.message3"><br>
+	 	<input type="text" v-model="pr.message4"><br>
+	 	<input type="text" v-model="pr.message5"><br>
+	 	<input type="text" v-model="pr.message6"><br>
+	 	<input type="text" v-model="pr.message7">
+	 </div>
+	 <br>
+	 <div class="input">
+		 <input type="button" value="重置" @click='reset'>
+	 </div>
+</div>
+	
+	<script src="lib/vue.min.js"></script>
+	<script>
+    var app = new Vue({
+        el: '#app',
+        data: {
+        	message:'sdffff',
+        	message1:'sadsfa',
+            pr:{
+            	message1: '程序员',
+            	message2: '老实又腼腆',
+            	message3: '聪明但没钱',
+            	message4: '一天到晚坐在那里熬夜写软件',
+            	message5: '如果饿了就咬一口方便面！',
+            	message6: '苦命',
+            	message7: '发现需求变了又要重新搞一遍，但是期限只剩下最后两天'
+            }
+        },
+        methods:{
+        	reset:function(){
+        		var mydefault = {message1: '程序员', message2: '老实又腼腆', message3: '聪明但没钱', message4: '一天到晚坐在那里熬夜写软件', message5: '如果饿了就咬一口方便面！', message6: '苦命', message7: '发现需求变了又要重新搞一遍，但是期限只剩下最后两天'} 
+        		this.pr = mydefault;
+        	}
+        }
+    })
+
+    </script>
+</body>
+
+</html>
