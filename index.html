@@ -72,12 +72,12 @@
             	message5: '如果饿了就咬一口方便面！',
             	message6: '苦命',
             	message7: '发现需求变了又要重新搞一遍，但是期限只剩下最后两天'
-            }
+            },
+            mydefault:{}
         },
         methods:{
         	reset:function(){
-        		var mydefault = {message1: '程序员', message2: '老实又腼腆', message3: '聪明但没钱', message4: '一天到晚坐在那里熬夜写软件', message5: '如果饿了就咬一口方便面！', message6: '苦命', message7: '发现需求变了又要重新搞一遍，但是期限只剩下最后两天'};
-        		this.pr = mydefault;
+        		this.pr = Object.assign({}, this.mydefault)
         	}
         },
         filters: {
@@ -85,6 +85,10 @@
           	message = message||''
             return value||'__'+message+'__'
           }
+        },
+        created(){
+        	this.mydefault = Object.assign({}, this.pr)
+        	console.log(this.mydefault === this.pr,1)
         }
     })
 
