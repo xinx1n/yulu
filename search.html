@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+	<meta charset="UTF-8">
+	<title>蓝精灵</title>
+	<style>
+		*{
+			box-sizing: border-box;
+		}
+		body{
+			background: #ddd;
+		}
+		.container>div{
+			background: #fff;
+			max-width: 500px;
+			padding:10px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+		.container>.preview{
+			min-height: 164px;
+			letter-spacing:.1rem;
+			line-height: 1.8rem;
+		}
+		.container>.input{
+			text-align: center;
+			line-height: 1.5rem;
+			vertical-align: middle;
+		}
+		.input>input[type="text"]{
+			width: 90%;
+			font-size: 1rem;
+			line-height: 1.5rem;
+			margin: 3px 0;
+		}
+	</style>
+</head>
+
+<body>
+	<div id="app" class="container">
+		<div class="input">
+			<input type="text" v-model="val"><br>
+		</div>
+		<div class="preview">
+			<ul>
+				<li v-for="item in itemsd">
+					{{ item }}
+				</li>
+			</ul>
+		</div>
+		<br>
+	</div>
+
+	<script src="https://cdn.bootcss.com/vue/2.2.6/vue.min.js"></script>
+	<script>
+		var app = new Vue({
+			el: '#app',
+			data: {
+				items: [
+					'我','我们','我们搜','我们索敌','我色到','我到底们'
+				],
+				val:''
+			},
+			methods: {
+				regTr:function (str) {
+					var reg = /\^|\.|\[|\$|\(|\)|\||\*|\+|\?|\{|\\/g
+					return str.replace(reg,'\\$&')
+				},
+			},
+			computed: {
+				itemsd: function() {
+					return this.items.filter(item => {
+						return item.toLowerCase().search(this.regTr(this.val).toLowerCase())!==-1
+					})
+				}
+			}
+		})
+	</script>
+</body>
+
+</html>
